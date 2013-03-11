@@ -38,11 +38,15 @@ def crawl_web(seed):
     tocrawl = [seed]
     crawled = []
     while tocrawl:
-        page = tocrawl.pop()
+        page = tocrawl.pop(0)
         if page not in crawled:
             union(tocrawl, get_all_links(get_page(page)))
             crawled.append(page)
-            print crawled[-1]
+            totallinks = len(tocrawl)+len(crawled)
+            print "Last Link Crawled:"
+            print page
+            print "To Crawl: ",len(tocrawl)," Crawled: ", len(crawled), " Total Links Collected: ", totallinks
+            print ""
     return crawled
 
-print crawl_web("http://wikipedia.org")
+print crawl_web("http://johntracy.com")
